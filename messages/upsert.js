@@ -5,7 +5,7 @@ export async function upsert(sock, m, plugins) {
 	try {
 		m = await msg(sock, m);
 
-		const prefix = "!";
+		const prefix = "-";
 		const isCmd = m.body.startsWith(prefix);
 		const command = isCmd ? removeAcents(m.body.slice(1).toLowerCase().trim().split(/ +/).filter((c) => c)[0]) : "";
 
