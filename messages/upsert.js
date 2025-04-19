@@ -17,7 +17,7 @@ export async function upsert(sock, m, plugins) {
 		const isMe = (botNumber === m.sender) || m.fromMe;
 
 		/* Cmd console */
-		isCmd ? '> Comando ' + command + ' ejecutado por ' + senderNumber
+		isCmd ? console.log('> Comando ' + command + ' ejecutado por ' + senderNumber) : false;
 
 		///LOGICS FOR PLUGINS;
 		for (let name in plugins) {
