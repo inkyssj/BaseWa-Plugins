@@ -10,7 +10,6 @@
     "Base",
     "Bot de WhatsApp"
   ],
-  "author": "Hideki",
   "license": "MIT",
   "description": "Bot base para WhatsApp",
   "dependencies": {
