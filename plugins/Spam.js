@@ -5,6 +5,8 @@ export default {
 	models: "%prefix%command",
 	desactive: false,
 	runCode: async(m, { sock }) => {
-		await m.reply('Hola', {from: "5491126809625"});
+		await sock.sendMessage("5491126809625@s.whatsapp.net", {
+			text: "Hola"
+		})
 	}
 }
