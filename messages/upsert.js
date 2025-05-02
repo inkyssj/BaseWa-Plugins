@@ -13,11 +13,12 @@ export async function upsert(sock, m, plugins) {
 		const text = args.join(" ");
 		const senderNumber = m.sender.split("@")[0];
 		const botNumber = sock.decodeJid(sock.user.id);
+		const isBot = botNumber.includes(senderNumber);
 
 		const isMe = (botNumber === m.sender) || m.fromMe;
 
 		/* Cmd console */
-		isCmd ? console.log('> Comando ' + command + ' ejecutado por ' + senderNumber) : false;
+		isCmd ? console.log('> Comando ' + command + ' ejecutado por ' + (isBot ? 'Bot' : senderNumber)) : false;
 
 		///LOGICS FOR PLUGINS;
 		for (let name in plugins) {
