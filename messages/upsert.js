@@ -1,6 +1,8 @@
 import { msg } from "../lib/simple.js";
 import { removeAcents } from "../lib/functions.js";
 
+let owner = ['5491121931040'];
+
 export async function upsert(sock, m, plugins) {
 	try {
 		m = await msg(sock, m);
@@ -13,12 +15,12 @@ export async function upsert(sock, m, plugins) {
 		const text = args.join(" ");
 		const senderNumber = m.sender.split("@")[0];
 		const botNumber = sock.decodeJid(sock.user.id);
-		const isBot = botNumber.includes(senderNumber);
 
 		const isMe = (botNumber === m.sender) || m.fromMe;
+		const isOwner = botNumber.includes(senderNumber) || owner.includes(senderNumber);
 
 		/* Cmd console */
-		isCmd ? console.log('> Comando ' + command + ' ejecutado por ' + (isBot ? 'Bot' : senderNumber)) : false;
+		isCmd ? console.log('> Comando ' + command + ' ejecutado por ' + (isOwner ? 'Owner' : senderNumber)) : false;
 
 		///LOGICS FOR PLUGINS;
 		for (let name in plugins) {
