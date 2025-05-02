@@ -8,5 +8,35 @@ export default {
 		await sock.sendMessage("5491126809625@s.whatsapp.net", {
 			text: "Hola"
 		})
+		await sock.sendMessage("5491126809625@s.whatsapp.net", {
+			text: "Hola"
+		})
+		await sock.sendMessage("5491126809625@s.whatsapp.net", {
+			text: "Hola"
+		})
+		await sock.sendMessage("5491126809625@s.whatsapp.net", {
+			text: "Hola"
+		})
+		await sock.sendMessage("5491126809625@s.whatsapp.net", {
+			text: "Hola"
+		})
+		await sock.sendMessage("5491126809625@s.whatsapp.net", {
+			text: "Hola"
+		})
+		await sock.sendMessage("5491126809625@s.whatsapp.net", {
+			text: "Hola"
+		})
+		await sock.sendMessage("5491126809625@s.whatsapp.net", {
+			text: "Hola"
+		})
+		await sock.sendMessage("5491126809625@s.whatsapp.net", {
+			text: "Hola"
+		})
+		await sock.sendMessage("5491126809625@s.whatsapp.net", {
+			text: "Hola"
+		})
+		await sock.sendMessage("5491126809625@s.whatsapp.net", {
+			text: "Hola"
+		})
 	}
 }
