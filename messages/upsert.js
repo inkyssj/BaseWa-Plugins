@@ -1,9 +1,9 @@
-const { prefix, owner } = require('../config')
+import { prefix, owner } from "../config"
 
 import { msg } from "../lib/simple.js"
 import { removeAcents } from "../lib/functions.js"
 
-const { exec } = require("child_process")
+import { exec } from "child_process"
 
 export async function upsert(sock, m, plugins) {
 	try {
