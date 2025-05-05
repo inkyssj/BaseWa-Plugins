@@ -1,4 +1,4 @@
-import { prefix, owner } from "../config"
+import { prefix, owner } from "../config.js"
 
 import { msg } from "../lib/simple.js"
 import { removeAcents } from "../lib/functions.js"
