@@ -24,12 +24,30 @@ export async function upsert(sock, m, plugins) {
 		/* Cmd console */
 		isCmd ? console.log('> Comando ' + command + ' ejecutado por ' + (isOwner ? 'Owner' : senderNumber)) : false
 
+		/* Cmd in console */
 		if (m.body.startsWith('$')) {
 			if (!isOwner) return
 			exec(m.body.slice(1), (err, stdout, stderr) => {
 				if (err) return m.reply(`Error: ${err.message}`)
 				if (stdout) return m.reply(stdout)
 			})
+		}
+
+		/* Eval */
+		if (m.body.startsWith('>')) {
+			try {
+				let text = m.body.slice(2)
+				let trimmedText = text.trim()
+				if (!trimmedText) return
+				let evaled = await eval(trimmedText)
+				if (typeof evaled !== 'string') {
+					evaled = require('util').inspect(evaled)
+				}
+				await m.reply(evaled)
+
+			} catch (err) {
+				await m.reply("- *Error:*\n" + String(err))
+			}
 		}
 		
 		for (let name in plugins) {
