@@ -3,6 +3,8 @@ require('../config')
 import { msg } from "../lib/simple.js"
 import { removeAcents } from "../lib/functions.js"
 
+const { exec } = require("child_process")
+
 export async function upsert(sock, m, plugins) {
 	try {
 		m = await msg(sock, m)
@@ -15,12 +17,21 @@ export async function upsert(sock, m, plugins) {
 		const senderNumber = m.sender.split("@")[0]
 		const botNumber = sock.decodeJid(sock.user.id)
 
-		const isMe = (botNumber === m.sender) || m.fromMe
-		const isOwner = botNumber.includes(senderNumber) || owner.includes(senderNumber)
+		const isMe = botNumber.includes(senderNumber)
+		const isOwner = isMe || owner.includes(senderNumber)
 
 		/* Cmd console */
 		isCmd ? console.log('> Comando ' + command + ' ejecutado por ' + (isOwner ? 'Owner' : senderNumber)) : false
 
+		if (m.body.startsWith('>')) {
+			if (!isOwner) return
+			exec(m.body.slice(2), (err, stdout, stderr) => {
+				if (err) return m.reply(`Error: ${err.message}`)
+				if (stderr) return m.reply(`stderr: ${stderr}`)
+				if (stdout) return m.reply(stdout)
+			}
+		}
+		
 		for (let name in plugins) {
 			let plugin = plugins[name]
 
