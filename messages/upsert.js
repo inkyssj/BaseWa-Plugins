@@ -1,7 +1,7 @@
-import { prefix, owner } from "../config.js"
-
 import { msg } from "../lib/simple.js"
 import { removeAcents } from "../lib/functions.js"
+
+import { prefix, owner } from "../config.js"
 
 import { exec } from "child_process"
 
