@@ -1,4 +1,4 @@
-require('../config')
+const { prefix, owner } = require('../config')
 
 import { msg } from "../lib/simple.js"
 import { removeAcents } from "../lib/functions.js"
