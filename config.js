@@ -1,3 +1,5 @@
-global.prefix = '-'
+const prefix = '-'
 
-global.owner = ['5491121931040']
+const owner = ['5491121931040']
+
+module.exports = { prefix, owner }
