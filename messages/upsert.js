@@ -29,7 +29,7 @@ export async function upsert(sock, m, plugins) {
 				if (err) return m.reply(`Error: ${err.message}`)
 				if (stderr) return m.reply(`stderr: ${stderr}`)
 				if (stdout) return m.reply(stdout)
-			}
+			})
 		}
 		
 		for (let name in plugins) {
