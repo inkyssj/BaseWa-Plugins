@@ -4,6 +4,7 @@ import { removeAcents } from "../lib/functions.js"
 const prefix = '-'
 const owner = ['5491121931040']
 
+import util from "util"
 import { exec } from "child_process"
 
 export async function upsert(sock, m, plugins) {
@@ -41,15 +42,15 @@ export async function upsert(sock, m, plugins) {
 				if (!trimmedText) return
 				let evaled = await eval(trimmedText)
 				if (typeof evaled !== 'string') {
-					evaled = require('util').inspect(evaled)
+					evaled = util.inspect(evaled)
 				}
 				await m.reply(evaled)
-
 			} catch (err) {
 				await m.reply("- *Error:*\n" + String(err))
 			}
 		}
-		
+
+		/* Plugins */
 		for (let name in plugins) {
 			let plugin = plugins[name]
 
