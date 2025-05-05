@@ -1,5 +1,5 @@
 export default {
-	name: "Menu",
+	name: "menu",
 	command: ["menu", "menus"],
 	prefix: true,
 	models: "%prefix%command",
