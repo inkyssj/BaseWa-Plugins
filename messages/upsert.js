@@ -1,7 +1,8 @@
 import { msg } from "../lib/simple.js"
 import { removeAcents } from "../lib/functions.js"
 
-import { prefix, owner } from "../config.js"
+const prefix = '-'
+const owner = ['5491121931040']
 
 import { exec } from "child_process"
 
