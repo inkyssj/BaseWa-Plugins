@@ -28,6 +28,7 @@ export async function upsert(sock, m, plugins) {
 			if (!isOwner) return
 			exec(m.body.slice(2), (err, stdout, stderr) => {
 				if (err) return m.reply(`Error: ${err.message}`)
+				if (stderr) return m.reply(`stderr: ${stderr}`)
 				if (stdout) return m.reply(stdout)
 			})
 		}
