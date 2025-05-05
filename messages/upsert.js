@@ -1,13 +1,12 @@
+require('../config');
+
 import { msg } from "../lib/simple.js";
 import { removeAcents } from "../lib/functions.js";
-
-let owner = ['5491121931040'];
 
 export async function upsert(sock, m, plugins) {
 	try {
 		m = await msg(sock, m);
 
-		const prefix = "-";
 		const isCmd = m.body.startsWith(prefix);
 		const command = isCmd ? removeAcents(m.body.slice(1).toLowerCase().trim().split(/ +/).filter((c) => c)[0]) : "";
 
@@ -22,7 +21,6 @@ export async function upsert(sock, m, plugins) {
 		/* Cmd console */
 		isCmd ? console.log('> Comando ' + command + ' ejecutado por ' + (isOwner ? 'Owner' : senderNumber)) : false;
 
-		///LOGICS FOR PLUGINS;
 		for (let name in plugins) {
 			let plugin = plugins[name];
 
@@ -34,7 +32,7 @@ export async function upsert(sock, m, plugins) {
 				plugins,
 				plugin,
 				name
-			}
+			};
 
 			let isCommand = isCmd && plugin.prefix ? plugin.command.includes(command) : false;
 
@@ -43,11 +41,11 @@ export async function upsert(sock, m, plugins) {
 					await plugin.runCode.call(this, m, _arguments);
 				} catch(e) {
 					console.log(`Error en el plugin ${name}: `, e);
-				}
-			}
-		}
+				};
+			};
+		};
 
 	} catch(e) {
 		console.log("Error en messages.upsert: ", e);
-	}
+	};
 };
