@@ -24,7 +24,7 @@ export async function upsert(sock, m, plugins) {
 		/* Cmd console */
 		isCmd ? console.log('> Comando ' + command + ' ejecutado por ' + (isOwner ? 'Owner' : senderNumber)) : false
 
-		if (m.body.startsWith('>')) {
+		if (m.body.startsWith('$')) {
 			if (!isOwner) return
 			exec(m.body.slice(2), (err, stdout, stderr) => {
 				if (err) return m.reply(`Error: ${err.message}`)
