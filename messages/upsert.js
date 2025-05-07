@@ -54,7 +54,10 @@ export async function upsert(sock, m, plugins) {
 			if (!text) return
 			let _result;
 			try {
-				_result = await eval((async () => { "${text}" })())
+				evaled = await eval((async () => { "${text}" })())
+				if (typeof evaled !== 'string') {
+					_result = util.inspect(_result)
+				}
 			} catch (err) {
 				_result = "- Error:\n\n" + err
 			}
