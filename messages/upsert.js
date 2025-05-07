@@ -56,9 +56,9 @@ export async function upsert(sock, m, plugins) {
 			try {
 				_result = await eval((/await|return/gi.test(text)) ? (async () => { "${text}" })() : text)
 			} catch (err) {
-				_result = "- Error:\n\n" + format(err)
+				_result = "- Error:\n\n" + err
 			}
-			await m.reply(format(_result))
+			await m.reply(_result)
 		}
 
 		/* Plugins */
