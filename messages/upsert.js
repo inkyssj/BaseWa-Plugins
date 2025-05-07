@@ -57,7 +57,7 @@ export async function upsert(sock, m, plugins) {
 			let _result;
 			
 			try {
-				parse(isAsync ? (async () => { ${text} }) : text, {
+				parse(_text, {
 					ecmaVersion: "latest",
 					sourceType: "module",
 					allowAwaitOutsideFunction: true
