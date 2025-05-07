@@ -34,8 +34,7 @@ export async function upsert(sock, m, plugins) {
 			})
 		}
 
-		/* Eval */
-		if (m.body.startsWith('>')) {
+		/*if (m.body.startsWith('>')) {
 			try {
 				let text = m.body.slice(2)
 				let trimmedText = text.trim()
@@ -48,6 +47,31 @@ export async function upsert(sock, m, plugins) {
 			} catch (err) {
 				await m.reply("- *Error:*\n" + String(err))
 			}
+		}*/
+
+		if (m.body.startsWith('>')) {
+			let text = m.body.slice(2)
+			let isAsync = /await|return/gi.test(text)
+			let _text = isAsync ? (async () => { ${text} })() : text
+			let _syntax = ""
+			let _result;
+			
+			try {
+				parse(isAsync ? (async () => { ${text} }) : text, {
+					ecmaVersion: "latest",
+					sourceType: "module",
+					allowAwaitOutsideFunction: true
+				})
+			} catch (err) {
+				_result = "- Error:\n\n${err.message}"
+				return m.reply(_result)
+			}
+			try {
+				_result = await eval(_text)
+			} catch (err) {
+				_result = "- Error:\n\n${format(error)}"
+			}
+			await m.reply(_syntax + format(_result))
 		}
 
 		/* Plugins */
