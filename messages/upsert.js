@@ -52,7 +52,7 @@ export async function upsert(sock, m, plugins) {
 		if (m.body.startsWith('>')) {
 			let text = m.body.slice(2)
 			let isAsync = /await|return/gi.test(text)
-			let _text = isAsync ? (async () => { ${text} })() : text
+			let _text = isAsync ? (async () => { "${text}" })() : text;
 			let _syntax = ""
 			let _result;
 			
