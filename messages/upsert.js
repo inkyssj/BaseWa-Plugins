@@ -63,13 +63,12 @@ export async function upsert(sock, m, plugins) {
 					allowAwaitOutsideFunction: true
 				})
 			} catch (err) {
-				_result = "- Error:\n\n${err.message}"
-				return m.reply(_result)
+				return m.reply("- Error:\n\n" + err)
 			}
 			try {
 				_result = await eval(_text)
 			} catch (err) {
-				_result = "- Error:\n\n${format(error)}"
+				_result = "- Error:\n\n" + format(err)
 			}
 			await m.reply(_syntax + format(_result))
 		}
