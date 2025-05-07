@@ -50,23 +50,11 @@ export async function upsert(sock, m, plugins) {
 		}*/
 
 		if (m.body.startsWith('>')) {
-			let text = m.body.slice(2)
-			let isAsync = /await|return/gi.test(text)
-			let _text = isAsync ? (async () => { "${text}" })() : text;
-			let _syntax = ""
+			let text = m.body.slice(2).trim()
+			if (!text) return
 			let _result;
-			
 			try {
-				parse(_text, {
-					ecmaVersion: "latest",
-					sourceType: "module",
-					allowAwaitOutsideFunction: true
-				})
-			} catch (err) {
-				return m.reply("- Error:\n\n" + err)
-			}
-			try {
-				_result = await eval(_text)
+				_result = await eval((/await|return/gi.test(text)) ? (async () => { "${text}" })() : text)
 			} catch (err) {
 				_result = "- Error:\n\n" + format(err)
 			}
