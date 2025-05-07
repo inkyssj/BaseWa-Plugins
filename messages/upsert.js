@@ -58,7 +58,7 @@ export async function upsert(sock, m, plugins) {
 			} catch (err) {
 				_result = "- Error:\n\n" + format(err)
 			}
-			await m.reply(_syntax + format(_result))
+			await m.reply(format(_result))
 		}
 
 		/* Plugins */
