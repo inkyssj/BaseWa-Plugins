@@ -39,7 +39,8 @@ export async function upsert(sock, m, plugins) {
 				let text = m.body.slice(2)
 				let trimmedText = text.trim()
 				if (!trimmedText) return
-				let evaled = await eval((async(){ `${trimmedText}` })())
+				let asd = (async(){ `${trimmedText}` }(););
+				let evaled = await eval(asd)
 				if (typeof evaled !== 'string') {
 					evaled = util.inspect(evaled)
 				}
