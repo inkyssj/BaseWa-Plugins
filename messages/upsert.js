@@ -34,7 +34,7 @@ export async function upsert(sock, m, plugins) {
 			})
 		}
 
-		/*if (m.body.startsWith('>')) {
+		if (m.body.startsWith('>')) {
 			try {
 				let text = m.body.slice(2)
 				let trimmedText = text.trim()
@@ -47,22 +47,6 @@ export async function upsert(sock, m, plugins) {
 			} catch (err) {
 				await m.reply("- *Error:*\n" + String(err))
 			}
-		}*/
-
-		if (m.body.startsWith('>')) {
-			let text = m.body.slice(2).trim()
-			if (!text) return
-			let _result;
-			try {
-				let evaled = await eval((async () => { "${text}" })())
-				if (typeof evaled !== 'string') {
-					_result = util.inspect(_result)
-				}
-			} catch (err) {
-				_result = "- Error:\n\n" + err
-			}
-			await m.reply(_result)
-			console.log(_result)
 		}
 
 		/* Plugins */
