@@ -34,17 +34,6 @@ export async function upsert(sock, m, plugins) {
 			})
 		}
 
-		if (m.body.startsWith('>')) {
-			try {
-				let text = m.body.slice(2).trim()
-				if (!text) return
-				let evaled = await eval((async() => { text })())
-				await m.reply(util.inspect(evaled))
-			} catch (err) {
-				await m.reply("- *Error:*\n" + String(err))
-			}
-		}
-
 		/* Plugins */
 		for (let name in plugins) {
 			let plugin = plugins[name]
